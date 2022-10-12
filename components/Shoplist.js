@@ -1,14 +1,25 @@
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
 import { danneShoplist } from '../styles/styles.js';
+
+var SingletonInstance = {
+    items: [{desc: "Några pallar äpplen", checked: true}, {desc: "En trave bananer", checked:false}, {desc: "Ett litet, litet bär", checked:false}],
+};
 
 const Shoplist = (props) => {
 
     const [showSheet, setShowSheet] = useState(false);
 
-    const [items, setItems] = useState([{desc: "Några pallar äpplen", checked: true}, {desc: "En trave bananer", checked:false}, {desc: "Ett litet, litet bär", checked:false}]);
+    const [items, setItems] = useState([]);
 
-    
+    useEffect(() => {
+
+        //Download users shoppinglist from firestore
+        setTimeout(() => {
+            setItems(SingletonInstance.items);
+        }, 100);
+        
+    });
 
 	return (
         <View style={danneShoplist.shoplistContainer}>
@@ -18,9 +29,9 @@ const Shoplist = (props) => {
                 <Button style={danneShoplist.filterButton} title="FILTER" onPress={() => { setShowSheet(!showSheet) }}></Button>
             </View>
 
-            <View style={showSheet ? {display: "none"} : danneShoplist.shoppingItemsContainer}>
-                {items.map((item, i)=><ItemRow key={i} itemName={item.desc} checked={item.checked}/>)}
-            </View>
+            <ScrollView style={showSheet ? {display: "none"} : danneShoplist.shoppingItemsContainer}>
+                {items.map((item, i)=><ItemRow key={i} itemName={item.desc} checked={item.checked} index={i}/>)}
+            </ScrollView>
             
             <View style={showSheet ? danneShoplist.sheetContainer : {display: "none"}}>
                 <Text>SHEET</Text>
@@ -38,7 +49,13 @@ const ItemRow = (props) => {
 
     const buttonPress = () => {
 
-        setChecked(!checked);
+        let newCheckedValue = !checked;
+
+        setChecked(newCheckedValue);
+
+        //Update on firestore
+        let index = props.index;
+        SingletonInstance.items[index].checked = newCheckedValue;
         
     };
 
@@ -49,15 +66,15 @@ const ItemRow = (props) => {
     });
 
     return(
-        <View style={{paddingTop: 5, paddingBottom: 5}}>
+        <TouchableOpacity style={{paddingTop: 5, paddingBottom: 5}} onPress={() => {buttonPress()}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                {isReady ? <Text>{props.itemName}</Text> : <Text>Loading...</Text>}
-                {isReady ? <Button title={checked ? "X" : "0"} onPress={() => {buttonPress()}}></Button> : <Text>...</Text>}
+                {isReady ? <Text style={{textDecorationLine: checked ? 'line-through' : '', textDecorationStyle: checked ? 'solid' : ''}}>{props.itemName}</Text> : <Text>Loading...</Text>}
+                {isReady ? <Text style={{width: 25, height: 25, borderStyle: 'solid', borderWidth: 1, borderColor: 'black', textAlign: 'center', paddingTop: 3.5}}>{checked ? "X" : " "}</Text> : <Text>...</Text>}
             </View>
 
             <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth}}/>
 
-        </View>
+        </TouchableOpacity>
          
     );
 
