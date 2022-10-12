@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { Card } from './components/card';
+import { Card } from './components/Card';
 import { StyleSheet, Text, View, Button, SafeAreaView, Platform } from 'react-native';
 import Recipes from './components/Recipes.js';
 import Favorite from './components/Favorite.js';
 import Shoplist from './components/Shoplist.js';
 import Pantry from './components/Pantry.js';
 import Profile from './components/Profile.js';
-import { pageStyles } from './styles/styles.js';
+import { pageStyles, bigCardStyles } from './styles/styles.js';
 import { useState, useEffect } from 'react';
 
 //testing more hello
@@ -30,8 +30,6 @@ export default function App() {
       <MainContent />
       </SafeAreaView>
     );
-    
-    
   }
 
 }
@@ -53,7 +51,7 @@ const MainContent = () => {
   switch (screen) {
 
     case RECIPES:
-      view = <Recipes props1={{ name: "test", styles: pageStyles }} />
+      view = <Recipes />
       break;
 
     case FAVORITE:

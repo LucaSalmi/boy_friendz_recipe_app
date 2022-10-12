@@ -1,28 +1,16 @@
-import { ProgressViewIOSComponent, StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View } from 'react-native';
+import { bigCardStyles } from '../styles/styles';
 
 
 export function Card(myProps) {
 
     return (
-        <View style={[styles.container, styles.elevation]}>
-            <Text>{myProps.myProps.text}</Text>
+        <View style={[bigCardStyles.superView]}>
+          <View style={[bigCardStyles.container, bigCardStyles.elevation]}>
+            <Text>{myProps.myProps}</Text>
+        </View>  
         </View>
+        
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'column',
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '75%',
-        width: '90%',
-        borderRadius: 50,
-        borderWidth:1
-    },
-    elevation: {
-        elevation: 30,
-        shadowColor: '#52006A',
-      },
-})
