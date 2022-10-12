@@ -23,9 +23,14 @@ export default function App() {
     );
   }
   else {
-    <SafeAreaView>
+
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
       <MainContent />
-    </SafeAreaView>
+      </SafeAreaView>
+    );
+    
+    
   }
 
 }
