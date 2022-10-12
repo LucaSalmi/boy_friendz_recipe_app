@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Card } from './components/card';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
 import Recipes from './components/Recipes.js';
 import Favorite from './components/Favorite.js';
 import Shoplist from './components/Shoplist.js';
@@ -53,18 +53,23 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.currentPage}>
-        {view}
+
+      <View style={styles.container}>
+        
+        <View style={styles.currentPage}>
+            {view}
+          </View>
+          <View style={styles.navBar}>
+            <Button title="Recipes" onPress={() => { changePage(RECIPES) }}></Button>
+            <Button title="Favorite" onPress={() => { changePage(FAVORITE) }}></Button>
+            <Button title="Shoplist" onPress={() => { changePage(SHOPLIST) }}></Button>
+            <Button title="Pantry" onPress={() => { changePage(PANTRY) }}></Button>
+            <Button title="Profile" onPress={() => { changePage(PROFILE) }}></Button>
+          </View>
+
+          <StatusBar hidden = {false} backgroundColor = "white" translucent = {false}/>
       </View>
-      <View style={styles.navBar}>
-        <Button title="Recipes" onPress={() => { changePage(RECIPES) }}></Button>
-        <Button title="Favorite" onPress={() => { changePage(FAVORITE) }}></Button>
-        <Button title="Shoplist" onPress={() => { changePage(SHOPLIST) }}></Button>
-        <Button title="Pantry" onPress={() => { changePage(PANTRY) }}></Button>
-        <Button title="Profile" onPress={() => { changePage(PROFILE) }}></Button>
-      </View>
-    </View>
+
 
   );
 
