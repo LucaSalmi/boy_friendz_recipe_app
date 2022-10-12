@@ -36,6 +36,7 @@ export const danneShoplist = StyleSheet.create({
     shoppingItemsContainer: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
+        padding: 20,
     },
     sheetContainer: {
         width: Dimensions.get('window').width,
