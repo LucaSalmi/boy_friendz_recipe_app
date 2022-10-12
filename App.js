@@ -1,19 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import { Card } from './components/card';
-import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, Platform } from 'react-native';
 import Recipes from './components/Recipes.js';
 import Favorite from './components/Favorite.js';
 import Shoplist from './components/Shoplist.js';
 import Pantry from './components/Pantry.js';
 import Profile from './components/Profile.js';
 import { pageStyles } from './styles/styles.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //testing more hello
 // a comment from ankan, hello guys
 
 
 export default function App() {
+
+  if (Platform.OS == "android") {
+    return (
+
+      <MainContent />
+
+    );
+  }
+  else {
+    <SafeAreaView>
+      <MainContent />
+    </SafeAreaView>
+  }
+
+}
+
+const MainContent = () => {
 
   const RECIPES = 0;
   const FAVORITE = 1;
@@ -25,9 +42,7 @@ export default function App() {
 
   let view;
 
-  const changePage = (pageName) => {
-    setScreen(pageName);
-  }
+  
 
   switch (screen) {
 
@@ -52,27 +67,28 @@ export default function App() {
       break;
   }
 
-  return (
+  const changePage = (pageName) => {
+    setScreen(pageName);
+    console.log(Platform.OS);
+  }
 
-      <View style={styles.container}>
-        
-        <View style={styles.currentPage}>
-            {view}
-          </View>
-          <View style={styles.navBar}>
-            <Button title="Recipes" onPress={() => { changePage(RECIPES) }}></Button>
-            <Button title="Favorite" onPress={() => { changePage(FAVORITE) }}></Button>
-            <Button title="Shoplist" onPress={() => { changePage(SHOPLIST) }}></Button>
-            <Button title="Pantry" onPress={() => { changePage(PANTRY) }}></Button>
-            <Button title="Profile" onPress={() => { changePage(PROFILE) }}></Button>
-          </View>
+  return(
+    <View style={styles.container}>
 
-          <StatusBar hidden = {false} backgroundColor = "white" translucent = {false}/>
+      <View style={styles.currentPage}>
+        {view}
+      </View>
+      <View style={styles.navBar}>
+        <Button title="Recipes" onPress={() => { changePage(RECIPES) }}></Button>
+        <Button title="Favorite" onPress={() => { changePage(FAVORITE) }}></Button>
+        <Button title="Shoplist" onPress={() => { changePage(SHOPLIST) }}></Button>
+        <Button title="Pantry" onPress={() => { changePage(PANTRY) }}></Button>
+        <Button title="Profile" onPress={() => { changePage(PROFILE) }}></Button>
       </View>
 
-
+      <StatusBar hidden={false} backgroundColor="white" translucent={false} />
+      </View>
   );
-
 }
 
 
