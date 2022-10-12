@@ -6,7 +6,9 @@ const Shoplist = (props) => {
 
     const [showSheet, setShowSheet] = useState(false);
 
-    const [items, setItems] = useState(["Några pallar äpplen", "En trave bananer", "Ett litet, litet bär"]);
+    const [items, setItems] = useState([{desc: "Några pallar äpplen", checked: true}, {desc: "En trave bananer", checked:false}, {desc: "Ett litet, litet bär", checked:false}]);
+
+    
 
 	return (
         <View style={danneShoplist.shoplistContainer}>
@@ -17,7 +19,7 @@ const Shoplist = (props) => {
             </View>
 
             <View style={showSheet ? {display: "none"} : danneShoplist.shoppingItemsContainer}>
-                {items.map((itemName)=><ItemRow key={itemName} itemName={itemName}/>)}
+                {items.map((item, i)=><ItemRow key={i} itemName={item.desc} checked={item.checked}/>)}
             </View>
             
             <View style={showSheet ? danneShoplist.sheetContainer : {display: "none"}}>
@@ -30,11 +32,27 @@ const Shoplist = (props) => {
 
 const ItemRow = (props) => {
 
+    const [isReady, setIsReady] = useState(false);
+
+    const [checked, setChecked] = useState(props.checked);
+
+    const buttonPress = () => {
+
+        setChecked(!checked);
+        
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsReady(true);
+        }, 1000);
+    });
+
     return(
         <View style={{paddingTop: 5, paddingBottom: 5}}>
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text>{props.itemName}</Text>
-                <Button title="X"></Button>
+                {isReady ? <Text>{props.itemName}</Text> : <Text>Loading...</Text>}
+                {isReady ? <Button title={checked ? "X" : "0"} onPress={() => {buttonPress()}}></Button> : <Text>...</Text>}
             </View>
 
             <View style={{borderBottomColor: 'black', borderBottomWidth: StyleSheet.hairlineWidth}}/>
