@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
 import { danneShoplist } from '../styles/styles.js';
 
@@ -21,12 +21,18 @@ const Shoplist = (props) => {
         
     });
 
+    const toggleSheet = () => {
+        let newBool = !showSheet;
+        setShowSheet(newBool);  
+        props.navBarChanger(newBool);
+    };
+
 	return (
         <View style={danneShoplist.shoplistContainer}>
             <View style={danneShoplist.searchBar}></View>
             <View style={danneShoplist.headerContainer}>
                 <Text style={danneShoplist.headerText}>SHOPLIST PAGE!</Text>
-                <Button style={danneShoplist.filterButton} title="FILTER" onPress={() => { setShowSheet(!showSheet) }}></Button>
+                <Button style={danneShoplist.filterButton} title="FILTER" onPress={() => { toggleSheet() }}></Button>
             </View>
 
             <ScrollView style={showSheet ? {display: "none"} : danneShoplist.shoppingItemsContainer}>
