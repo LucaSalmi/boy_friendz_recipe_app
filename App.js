@@ -16,41 +16,41 @@ import { useState } from 'react';
 export default function App() {
 
   const RECIPES = 0;
-	const FAVORITE = 1;
-	const SHOPLIST = 2;
+  const FAVORITE = 1;
+  const SHOPLIST = 2;
   const PANTRY = 3;
   const PROFILE = 4;
 
-	const [screen, setScreen] = useState(RECIPES);
+  const [screen, setScreen] = useState(RECIPES);
 
-	let view;
+  let view;
 
   const changePage = (pageName) => {
     setScreen(pageName);
   }
 
-	switch(screen) {
+  switch (screen) {
 
-		case RECIPES:
-			view = <Recipes props1={{name: "test", styles: pageStyles}}/>
-			break;
+    case RECIPES:
+      view = <Recipes props1={{ name: "test", styles: pageStyles }} />
+      break;
 
-		case FAVORITE:
-			view = <Favorite props1={{name: "test", styles: pageStyles}}/>
-			break;
+    case FAVORITE:
+      view = <Favorite props1={{ name: "test", styles: pageStyles }} />
+      break;
 
-		case SHOPLIST:
-			view = <Shoplist props1={{name: "test", styles: pageStyles}}/>
-			break;
+    case SHOPLIST:
+      view = <Shoplist props1={{ name: "test", styles: pageStyles }} />
+      break;
 
     case PANTRY:
-			view = <Pantry props1={{name: "test", styles: pageStyles}}/>
-			break;
+      view = <Pantry props1={{ name: "test", styles: pageStyles }} />
+      break;
 
     case PROFILE:
-			view = <Profile props1={{name: "test", styles: pageStyles}}/>
-			break;
-	}
+      view = <Profile props1={{ name: "test", styles: pageStyles }} />
+      break;
+  }
 
   return (
     <View style={styles.container}>
@@ -58,16 +58,16 @@ export default function App() {
         {view}
       </View>
       <View style={styles.navBar}>
-          <Button title="Recipes" onPress={() => {changePage(RECIPES)}}></Button>
-          <Button title="Favorite" onPress={() => {changePage(FAVORITE)}}></Button>
-          <Button title="Shoplist" onPress={() => {changePage(SHOPLIST)}}></Button>
-          <Button title="Pantry" onPress={() => {changePage(PANTRY)}}></Button>
-          <Button title="Profile" onPress={() => {changePage(PROFILE)}}></Button>
+        <Button title="Recipes" onPress={() => { changePage(RECIPES) }}></Button>
+        <Button title="Favorite" onPress={() => { changePage(FAVORITE) }}></Button>
+        <Button title="Shoplist" onPress={() => { changePage(SHOPLIST) }}></Button>
+        <Button title="Pantry" onPress={() => { changePage(PANTRY) }}></Button>
+        <Button title="Profile" onPress={() => { changePage(PROFILE) }}></Button>
       </View>
-      
     </View>
+
   );
-  
+
 }
 
 
