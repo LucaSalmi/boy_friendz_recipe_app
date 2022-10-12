@@ -13,7 +13,7 @@ export const bigCardStyles = StyleSheet.create({
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: '80%',
+		height: '70%',
 		width: '85%',
 		borderRadius: 25,
 		borderWidth: 1
