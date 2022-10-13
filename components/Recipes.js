@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Dimens
 import { useState } from 'react';
 import { Card } from './Card';
 import { bigCardStyles } from '../styles/styles';
-import Carousel from 'react-native-reanimated-carousel';
 
 DATA = [
     {
@@ -25,28 +24,25 @@ DATA = [
 
 const Recipes = () => {
 
-    const width = Dimensions.get('window').width;
-    const heigth = Dimensions.get('window').height;
+    const renderItem = ({ item }) => (
+        <Card title={item.title} style={bigCardStyles.container} />
+    );
+
     return (
 
-
-        <Carousel
-            loop
-            width={width}
-            height={heigth}
-            autoPlay={true}
-            pagingEnabled={true}
+        <FlatList
             data={DATA}
-            scrollAnimationDuration={1000}
-            onSnapToItem={(index) => console.log('current index:', index)}
-            renderItem={({ index }) => (
-                <Card title={DATA[index].title} style={bigCardStyles.container} isSmallCard={false} />
-            )}
-            panGestureHandlerProps={{
-                activeOffsetX: [-10, 10],
+            renderItem={renderItem}
+            keyExtractor={(item) => {
+                item.id
             }}
+            horizontal
+            snapToAlignment="start"
+            decelerationRate={"fast"}
+            snapToInterval={Dimensions.get("window").width}
         />
     );
+
 }
 
 export default Recipes;
