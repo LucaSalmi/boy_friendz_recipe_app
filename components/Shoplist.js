@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import { useState, useEffect, useRef } from 'react';
 import { danneShoplist } from '../styles/styles.js';
+import SearchBar from './SearchBar.js';
 
 var SingletonInstance = {
     items: [{desc: "Några pallar äpplen", checked: true}, {desc: "En trave bananer", checked:false}, {desc: "Ett litet, litet bär", checked:false}],
@@ -29,7 +30,7 @@ const Shoplist = (props) => {
 
 	return (
         <View style={danneShoplist.shoplistContainer}>
-            <View style={danneShoplist.searchBar}></View>
+            <SearchBar />
             <View style={danneShoplist.headerContainer}>
                 <Text style={danneShoplist.headerText}>SHOPLIST PAGE!</Text>
                 <Button style={danneShoplist.filterButton} title="FILTER" onPress={() => { toggleSheet() }}></Button>
