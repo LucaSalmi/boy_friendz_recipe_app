@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList, Dimensions } from 'react-native';
 import { useState } from 'react';
 import { Card } from './Card';
 import { bigCardStyles } from '../styles/styles';
+import Carousel from 'react-native-reanimated-carousel';
 
 DATA = [
     {
@@ -24,17 +25,26 @@ DATA = [
 
 const Recipes = () => {
 
-    const renderItem = ({ item }) => (
-        <Card title={item.title} style={bigCardStyles.container} isSmallCard={false}/>
-    );
-
+    const width = Dimensions.get('window').width;
+    const heigth = Dimensions.get('window').height;
     return (
 
-        <FlatList
+
+        <Carousel
+            loop
+            width={width}
+            height={heigth}
+            autoPlay={true}
+            pagingEnabled={true}
             data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            horizontal
+            scrollAnimationDuration={1000}
+            onSnapToItem={(index) => console.log('current index:', index)}
+            renderItem={({ index }) => (
+                <Card title={DATA[index].title} style={bigCardStyles.container} isSmallCard={false} />
+            )}
+            panGestureHandlerProps={{
+                activeOffsetX: [-10, 10],
+            }}
         />
     );
 }
