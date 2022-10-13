@@ -6,8 +6,8 @@ export function Card(myProps) {
 
     return (
         <View style={[bigCardStyles.superView]}>
-          <View style={[bigCardStyles.container, bigCardStyles.elevation]}>
-            <Text>{myProps.myProps}</Text>
+          <View style={[myProps.style, bigCardStyles.elevation]}>
+            <Text>{myProps.title}</Text>
         </View>  
         </View>
         

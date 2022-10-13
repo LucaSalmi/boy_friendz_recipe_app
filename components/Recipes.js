@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
 import { useState } from 'react';
 import { Card } from './Card';
-
+import { bigCardStyles } from '../styles/styles';
 
 DATA = [
     {
@@ -25,7 +25,7 @@ DATA = [
 const Recipes = () => {
 
     const renderItem = ({ item }) => (
-        <Card myProps={item.title} />
+        <Card title={item.title} style={bigCardStyles.container} />
     );
 
     return (
