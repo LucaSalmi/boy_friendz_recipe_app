@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Card } from './components/Card';
-import { StyleSheet, Text, View, Button, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, Platform, TouchableOpacity } from 'react-native';
 import Recipes from './components/Recipes.js';
 import Favorite from './components/Favorite.js';
 import Shoplist from './components/Shoplist.js';
@@ -8,6 +8,7 @@ import Pantry from './components/Pantry.js';
 import Profile from './components/Profile.js';
 import { pageStyles, bigCardStyles } from './styles/styles.js';
 import { useState, useEffect } from 'react';
+import Icon from 'react-native-ico';
 
 //testing more hello
 // a comment from ankan, hello guys
@@ -85,11 +86,39 @@ const MainContent = () => {
         {view}
       </View>
       <View style={hideNav ? styles.navBarHidden : styles.navBar}>
+        {/*
         <Button title="Recipes" onPress={() => { changePage(RECIPES) }}></Button>
         <Button title="Favorite" onPress={() => { changePage(FAVORITE) }}></Button>
         <Button title="Shoplist" onPress={() => { changePage(SHOPLIST) }}></Button>
         <Button title="Pantry" onPress={() => { changePage(PANTRY) }}></Button>
         <Button title="Profile" onPress={() => { changePage(PROFILE) }}></Button>
+        */}
+        <TouchableOpacity style={styles.navButton} onPress={() => { changePage(RECIPES) }}>
+        <Icon name="food-covered-by-a-bell-shape-outline" group="lodgicons"/>
+        <Text>Recipes</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.navButton} onPress={() => { changePage(FAVORITE) }}>
+        <Icon name="heart-shape-outline" group="font-awesome"/>
+        <Text>Favorites</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.navButton} onPress={() => { changePage(SHOPLIST) }}>
+        <Icon name="shopping-cart" group="basic"/>
+        <Text>Shoplist</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.navButton} onPress={() => { changePage(PANTRY) }}>
+        <Icon name="list" group="shopping"/>
+        <Text>Pantry</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.navButton} onPress={() => { changePage(PROFILE) }}>
+        <Icon name="profile" group="basic"/>
+        <Text>Profile</Text>
+        </TouchableOpacity>
+
+        
       </View>
 
       <StatusBar hidden={false} backgroundColor="white" translucent={false} />
@@ -101,18 +130,30 @@ const MainContent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1, 
+    width: '100%',
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+   
   },
   currentPage: {
     flex: 1,
   },
   navBar: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: '#F3F3F3',
+    paddingBottom: 18,
+    paddingTop: 18,
+
+    
   },
   navBarHidden: {
     display: 'none',
+  },
+  navButton:{
+    flexDirection: 'column',
+    alignItems: 'center'
+
+    
   },
 });

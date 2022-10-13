@@ -19,7 +19,7 @@ export const bigCardStyles = StyleSheet.create({
 		borderWidth: 1
 	},
 	elevation: {
-		elevation: 30,
+		elevation: 10,
 		shadowColor: '#52006A',
 	},
 	superView: {
