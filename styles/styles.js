@@ -31,6 +31,26 @@ export const bigCardStyles = StyleSheet.create({
 	},
 })
 
+export const smallCardStyles = StyleSheet.create({
+    container: {
+        flexDirection: 'column',
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+		height: '90%',
+		width: '85%',
+		borderRadius: 25,
+		borderWidth: 1
+    },
+    superView: {
+		flex: 1,
+		height: Dimensions.get('window').height*0.2,
+		width: Dimensions.get('window').width,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});
+
 export const danneShoplist = StyleSheet.create({
     shoplistContainer: {
         flex: 1,
@@ -39,13 +59,6 @@ export const danneShoplist = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
         backgroundColor: "#0005",
-    },
-    searchBar: {
-        width: "50%",
-        height: 30,
-        backgroundColor: "gray",
-        borderRadius: 10,
-        margin: 10,
     },
     headerContainer: {
         width: Dimensions.get('window').width,
@@ -69,5 +82,16 @@ export const danneShoplist = StyleSheet.create({
         borderTopRightRadius: 15,
         padding: 20,
         backgroundColor: "red",
+    },
+});
+
+export const danneFavorite = StyleSheet.create({
+    favoriteContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        backgroundColor: "#0005",
     },
 });

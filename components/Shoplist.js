@@ -69,7 +69,7 @@ const ItemRow = (props) => {
     useEffect(() => {
         setTimeout(() => {
             setIsReady(true);
-        }, 1000);
+        }, 500);
     });
 
     return(
