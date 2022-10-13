@@ -46,6 +46,8 @@ const MainContent = () => {
 
   const [screen, setScreen] = useState(RECIPES);
 
+  const [hideNav, setHideNav] = useState(false);
+
   let view;
 
   
@@ -61,7 +63,7 @@ const MainContent = () => {
       break;
 
     case SHOPLIST:
-      view = <Shoplist props1={{ name: "test", styles: pageStyles }} />
+      view = <Shoplist navBarChanger={setHideNav}/>
       break;
 
     case PANTRY:
@@ -84,7 +86,7 @@ const MainContent = () => {
       <View style={styles.currentPage}>
         {view}
       </View>
-      <View style={styles.navBar}>
+      <View style={hideNav ? styles.navBarHidden : styles.navBar}>
         <Button title="Recipes" onPress={() => { changePage(RECIPES) }}></Button>
         <Button title="Favorite" onPress={() => { changePage(FAVORITE) }}></Button>
         <Button title="Shoplist" onPress={() => { changePage(SHOPLIST) }}></Button>
@@ -111,5 +113,8 @@ const styles = StyleSheet.create({
   },
   navBar: {
     flexDirection: 'row',
+  },
+  navBarHidden: {
+    display: 'none',
   },
 });
