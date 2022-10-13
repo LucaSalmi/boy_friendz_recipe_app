@@ -25,7 +25,7 @@ DATA = [
 const Recipes = () => {
 
     const renderItem = ({ item }) => (
-        <Card title={item.title} style={bigCardStyles.container} />
+        <Card title={item.title} style={bigCardStyles.container} isSmallCard={false}/>
     );
 
     return (
