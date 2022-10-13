@@ -1,22 +1,42 @@
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
 import { useState } from 'react';
+import { Card } from './Card';
+import { bigCardStyles } from '../styles/styles';
 
-const Recipes = (props) => {
+DATA = [
+    {
+        id: 0,
+        title: 'first',
+    },
+    {
+        id: 1,
+        title: "second",
+    },
+    {
+        id: 3,
+        title: "third",
+    },
+    {
+        id: 4,
+        title: "fourth",
+    },
+]
 
-    
+const Recipes = () => {
 
-    const showPerson = () => {
-        console.log(props.props1.styles.text);
-    }   
+    const renderItem = ({ item }) => (
+        <Card title={item.title} style={bigCardStyles.container} />
+    );
 
-	return (
-        <View>
-            <Text>Hello {props.props1.name}!</Text>
-            <Text style={props.props1.styles.text}>Click Me</Text>
-            <Button title='Log something' onPress={showPerson}></Button>
-        </View>
-        
-	);
+    return (
+
+        <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            horizontal
+        />
+    );
 }
 
 export default Recipes;
